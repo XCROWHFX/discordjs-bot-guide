@@ -101,21 +101,31 @@ I honestly consider that if you don't understand the code you're about to see, c
 Okay finally, we're ready to start coding. \o/ Let's take a look at the most basic of examples, the ping-pong bot. Here's the code in its entirety:
 
 ```javascript
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
+//////////////////////////
 
 client.on("ready", () => {
-  console.log("I am ready!");
+  console.log(`Loading Project!... ${client.user.tag}!`);
 });
 
-client.on("message", (message) => {
-  if (message.content.startsWith("ping")) {
-    message.channel.send("pong!");
-  }
-});
+///////////////////////
 
+// Apply Prefix
+let prefix = "!";
+//
+client.on("message", message => {
+  //
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (message.content.startsWith(prefix + "Ping")) {
+    message.channel.send("Ping");
+    //
+ 
+///
 client.login("SuperSecretBotTokenHere");
-```
+////
 
 {% hint style="info" %}
 The variable `client` here is used an an example to represent the [&lt;Client&gt;](https://discord.js.org/#/docs/main/stable/class/Client) class. Some people call it `bot`, but you can technically call it whatever you want. I recommend sticking to `client` though!
